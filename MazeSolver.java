@@ -67,3 +67,14 @@ public final class MazeSolver {
         directions.add(new int[]{0, -2}); 
         directions.add(new int[]{-2, 0}); 
         Collections.shuffle(directions, random);
+
+        for (int[] dir : directions) {
+            int newRow = row + dir[0];
+            int newCol = col + dir[1];
+
+            if (newRow > 0 && newRow < rows - 1 && newCol > 0 && newCol < cols - 1 && maze[newRow][newCol] == '#') {
+                maze[row + dir[0] / 2][col + dir[1] / 2] = ' '; 
+                recursiveBacktracking(newRow, newCol, maze); 
+            }
+        }
+    }
