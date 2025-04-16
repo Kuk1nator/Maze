@@ -40,3 +40,8 @@ public final class MazeSolver {
 
         endRow = rows - 2;
         endCol = cols - 2;
+        
+        startRow = Math.min(Math.max(startRow, 1), rows - 2);
+        startCol = Math.min(Math.max(startCol, 1), cols - 2);
+        endRow = Math.min(Math.max(endRow, 1), rows - 2);
+        endCol = Math.min(Math.max(endCol, 1), cols - 2);
