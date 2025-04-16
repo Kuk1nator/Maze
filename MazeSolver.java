@@ -160,3 +160,13 @@ public final class MazeSolver {
             } else {
                 System.out.println("\nNo path found.");
             }
+
+        } catch (NumberFormatException e) {
+            System.out.println("Invalid input: Please enter valid integer values for rows and columns.");
+        } catch (IllegalArgumentException e) {
+            System.out.println("Invalid input: " + e.getMessage());
+        } catch (Exception e) {
+            System.out.println("An unexpected error occurred: " + e.getMessage());
+        }
+    }
+}
