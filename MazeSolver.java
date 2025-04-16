@@ -57,3 +57,13 @@ public final class MazeSolver {
 
         return maze;
     }
+    
+    private void recursiveBacktracking(int row, int col, char[][] maze) {
+        maze[row][col] = ' '; 
+
+        List<int[]> directions = new ArrayList<>();
+        directions.add(new int[]{0, 2});  
+        directions.add(new int[]{2, 0});  
+        directions.add(new int[]{0, -2}); 
+        directions.add(new int[]{-2, 0}); 
+        Collections.shuffle(directions, random);
