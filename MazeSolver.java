@@ -45,3 +45,15 @@ public final class MazeSolver {
         startCol = Math.min(Math.max(startCol, 1), cols - 2);
         endRow = Math.min(Math.max(endRow, 1), rows - 2);
         endCol = Math.min(Math.max(endCol, 1), cols - 2);
+        if (startRow % 2 == 0) startRow++;
+        if (startCol % 2 == 0) startCol++;
+        if (endRow % 2 == 0) endRow++;
+        if (endCol % 2 == 0) endCol++;
+
+        recursiveBacktracking(startRow, startCol, maze);
+
+        maze[startRow][startCol] = 'S';
+        maze[endRow][endCol] = 'E';
+
+        return maze;
+    }
