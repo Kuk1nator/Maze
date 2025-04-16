@@ -16,4 +16,12 @@ public final class MazeSolver {
     private int endRow;
     private int endCol;
     private final Random random = new Random();
-}
+
+    public MazeSolver(int rows, int cols) {
+        if (rows <= 0 || cols <= 0) {
+            throw new IllegalArgumentException("Maze dimensions must be positive integers.");
+        }
+        this.rows = rows;
+        this.cols = cols;
+        this.maze = generateMaze(); 
+        this.path = new ArrayList<>();
