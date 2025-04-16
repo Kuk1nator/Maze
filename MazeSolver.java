@@ -26,7 +26,26 @@ public final class MazeSolver {
         this.maze = generateMaze(); 
         this.path = new ArrayList<>();
         
-}
+        }
+   
+        isited[row][col] = ' ';
+        path.add(new int[]{row, col});
+
+        if (findPath(row + 1, col, visited)) return true;
+        if (findPath(row - 1, col, visited)) return true;
+        if (findPath(row, col + 1, visited)) return true;
+        if (findPath(row, col - 1, visited)) return true;
+
+        path.remove(path.size() - 1);
+        return false;
+    }
+
+    public void displayMaze(boolean showPath) {
+        if (maze == null) {
+            System.out.println("Maze not generated yet.");
+            return;
+        }
+
 
     public char[][] generateMaze() {
         maze = new char[rows][cols];
