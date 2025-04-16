@@ -78,3 +78,22 @@ public final class MazeSolver {
             }
         }
     }
+
+    public boolean solveMaze() {
+        char[][] visited = new char[rows][cols];
+        for (int i = 0; i < rows; i++) {
+            Arrays.fill(visited[i], '#');
+        }
+        path.clear();
+        return findPath(startRow, startCol, visited);
+    }
+
+    private boolean findPath(int row, int col, char[][] visited) {
+        if (row == endRow && col == endCol) {
+            path.add(new int[]{row, col});
+            return true;
+        }
+
+        if (row < 0 || row >= rows || col < 0 || col >= cols || maze[row][col] == '#' || visited[row][col] == ' ') {
+            return false;
+        }
