@@ -116,3 +116,47 @@ public final class MazeSolver {
         if (row < 0 || row >= rows || col < 0 || col >= cols || maze[row][col] == '#' || visited[row][col] == ' ') {
             return false;
         }
+
+        for (int row = 0; row < rows; row++) {
+            final int currentRow = row; 
+            for (int col = 0; col < cols; col++) {
+                final int currentCol = col; 
+                char cell = maze[currentRow][currentCol];
+                if (showPath && path.stream().anyMatch(p -> p[0] == currentRow && p[1] == currentCol) && cell != 'S' && cell != 'E') {
+                    System.out.print(". "); 
+                } else {
+                    System.out.print(cell + " ");
+                }
+            }
+            System.out.println();
+        }
+    }
+
+    public static void main(String[] args) {
+        try (Scanner scanner = new Scanner(System.in)) {
+            System.out.print("Enter the number of rows for the maze (default 10): ");
+            String rowsInput = scanner.nextLine();
+            int rows = rowsInput.isEmpty() ? 10 : Integer.parseInt(rowsInput);
+
+            System.out.print("Enter the number of columns for the maze (default 10): ");
+            String colsInput = scanner.nextLine();
+            int cols = colsInput.isEmpty() ? 10 : Integer.parseInt(colsInput);
+
+            MazeSolver solver = new MazeSolver(rows, cols);
+
+            System.out.println("\nGenerated Maze:");
+            solver.displayMaze(false);
+
+            if (solver.solveMaze()) {
+                System.out.println("\nSolved Maze with Path:");
+                solver.displayMaze(true);
+
+                System.out.print("\nPath found: ");
+                for (int[] coord : solver.path) {
+                    System.out.print("(" + coord[0] + ", " + coord[1] + ") ");
+                }
+                System.out.println();
+
+            } else {
+                System.out.println("\nNo path found.");
+            }
