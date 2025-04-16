@@ -25,3 +25,18 @@ public final class MazeSolver {
         this.cols = cols;
         this.maze = generateMaze(); 
         this.path = new ArrayList<>();
+        
+}
+
+    public char[][] generateMaze() {
+        maze = new char[rows][cols];
+
+        for (int i = 0; i < rows; i++) {
+            Arrays.fill(maze[i], '#');
+        }
+
+        startRow = 1;
+        startCol = 1;
+
+        endRow = rows - 2;
+        endCol = cols - 2;
