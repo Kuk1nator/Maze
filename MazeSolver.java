@@ -6,7 +6,7 @@ import java.util.Random;
 import java.util.Scanner;
 
 public final class MazeSolver {
-    
+
     private int rows;
     private int cols;
     private char[][] maze;
@@ -25,27 +25,7 @@ public final class MazeSolver {
         this.cols = cols;
         this.maze = generateMaze(); 
         this.path = new ArrayList<>();
-        
-        }
-   
-        isited[row][col] = ' ';
-        path.add(new int[]{row, col});
-
-        if (findPath(row + 1, col, visited)) return true;
-        if (findPath(row - 1, col, visited)) return true;
-        if (findPath(row, col + 1, visited)) return true;
-        if (findPath(row, col - 1, visited)) return true;
-
-        path.remove(path.size() - 1);
-        return false;
     }
-
-    public void displayMaze(boolean showPath) {
-        if (maze == null) {
-            System.out.println("Maze not generated yet.");
-            return;
-        }
-
 
     public char[][] generateMaze() {
         maze = new char[rows][cols];
@@ -59,7 +39,7 @@ public final class MazeSolver {
 
         endRow = rows - 2;
         endCol = cols - 2;
-        
+
         startRow = Math.min(Math.max(startRow, 1), rows - 2);
         startCol = Math.min(Math.max(startCol, 1), cols - 2);
         endRow = Math.min(Math.max(endRow, 1), rows - 2);
@@ -76,7 +56,7 @@ public final class MazeSolver {
 
         return maze;
     }
-    
+
     private void recursiveBacktracking(int row, int col, char[][] maze) {
         maze[row][col] = ' '; 
 
@@ -115,6 +95,24 @@ public final class MazeSolver {
 
         if (row < 0 || row >= rows || col < 0 || col >= cols || maze[row][col] == '#' || visited[row][col] == ' ') {
             return false;
+        }
+
+        visited[row][col] = ' ';
+        path.add(new int[]{row, col});
+
+        if (findPath(row + 1, col, visited)) return true;
+        if (findPath(row - 1, col, visited)) return true;
+        if (findPath(row, col + 1, visited)) return true;
+        if (findPath(row, col - 1, visited)) return true;
+
+        path.remove(path.size() - 1);
+        return false;
+    }
+
+    public void displayMaze(boolean showPath) {
+        if (maze == null) {
+            System.out.println("Maze not generated yet.");
+            return;
         }
 
         for (int row = 0; row < rows; row++) {
